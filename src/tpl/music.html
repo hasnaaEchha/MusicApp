@@ -1,0 +1,229 @@
+  <!-- navbar -->
+  <!-- navbar header -->
+  <!-- navbar header -->
+
+  <!-- / navbar header -->
+
+  <!-- navbar collapse -->
+
+  <!-- / navbar collapse -->
+
+  <div    class="navbar-header navSitt {{app.settings.navbarHeaderColor}}">
+      <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+          <i class="glyphicon glyphicon-cog"></i>
+      </button>
+      <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll-to="app">
+          <i class="glyphicon glyphicon-align-justify"></i>
+      </button>
+      <!-- brand -->
+      <a href="#/" class="navbar-brand text-lt">
+          <i class="fa fa-play-circle"></i>
+          <img src="img/logo.png" alt="." class="hide">
+          <span class="hidden-folded m-l-xs">MUSIC</span>
+      </a>
+      <!-- / brand -->
+  </div>
+  <!-- / navbar header -->
+  <!-- navbar header -->
+
+  <!-- / navbar header -->
+
+  <!-- navbar collapse -->
+  <div class="collapse pos-rlt navbar-collapse box-shadow navSitt {{app.settings.navbarCollapseColor}}">
+      <!-- buttons -->
+      <div class="nav navbar-nav hidden-xs">
+          <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+              <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+          </a>
+
+      </div>
+      <!-- / buttons -->
+
+      <!-- link and dropdown -->
+
+      <!-- / link and dropdown -->
+
+      <!-- search form -->
+      <form class="navbar-form navbar-form-sm navbar-left no-padder" role="search">
+          <div class="form-group">
+              <div class="input-group w-lg w-auto-xs">
+                  <input type="text" ng-model="selected"  class="form-control input-sm bg-light no-border padder" placeholder="Search songs and artists...">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-sm bg-light" ng-click="search()"><i class="fa fa-search"></i></button>
+              </span>
+              </div>
+          </div>
+      </form>
+      <!-- / search form -->
+
+      <!-- nabar right -->
+      <ul ng-if="!identity.isAuthenticated()" class="nav navbar-nav navbar-right">
+          <li class="hidden-xs">
+              <a ui-fullscreen></a>
+          </li>
+          <li ng-if="!identity.isAuthenticated()" class="dropdown" dropdown>
+              <a href class="dropdown-toggle" dropdown-toggle>
+                  <i class="fa fa-unlock"><strong>Sign in</strong></i>
+                  <span class="visible-xs-inline">Notifications</span>
+              </a>
+              <!-- dropdown -->
+              <div class="dropdown-menu w-xl animated fadeInUp">
+                  <div class="panel bg-white">
+                      <div class="list-group">
+                          <a ui-sref="access.signin" class="list-group-item">
+                            <span class="clear block m-b-none">
+                             Log In<br>
+                            </span>
+                          </a>
+                          <a ui-sref="access.signup" class="media list-group-item">
+                              <span class="block m-b-none">Sign Up<br></span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <!-- / dropdown -->
+          </li>
+          <li ng-if="identity.isAuthenticated()" class="dropdown" dropdown>
+              <a href class="dropdown-toggle" dropdown-toggle>
+                  <i class="fa fa-unlock"></i>
+                  <span class="visible-xs-inline">Notifications</span>
+              </a>
+
+          </li>
+
+      </ul>
+      <ul ng-if="identity.isAuthenticated()" class="nav navbar-nav navbar-right">
+          <li class="dropdown hidden-sm" is-open="lang.isopen" dropdown>
+              <a href class="dropdown-toggle" dropdown-toggle>
+                  {{selectLang}} <b class="caret"></b>
+              </a>
+              <!-- dropdown -->
+              <ul class="dropdown-menu animated fadeInRight w">
+                  <li ng-repeat="(langKey, label) in langs">
+                      <a ng-click="setLang(langKey, $event)" href>{{label}}</a>
+                  </li>
+              </ul>
+              <!-- / dropdown -->
+          </li>
+          <li class="hidden-xs">
+              <a ui-fullscreen></a>
+          </li>
+          <li ng-click="identity.logout()" class="dropdown" dropdown>
+              <a ui-sref="access.signin" class="dropdown-toggle" dropdown-toggle>
+                  <i class="fa fa-lock"></i>
+                  <span class="visible-xs-inline">Logout</span>
+
+              </a>
+              <!-- dropdown -->
+              <!-- / dropdown -->
+          </li>
+          <li class="dropdown" dropdown>
+              <a href class="dropdown-toggle clear" dropdown-toggle>
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img ng-src="{{identity.currentUser.imgUrl}}" alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+                  <span class="hidden-sm hidden-md">{{identity.currentUser.name}}</span> <b class="caret"></b>
+              </a>
+              <!-- dropdown -->
+              <ul class="dropdown-menu animated fadeInRight w">
+                  <li>
+                      <a ui-sref="music.profile">Profile</a>
+                  </li>
+
+                  <li class="divider"></li>
+                  <li ng-click="identity.logout()">
+                      <a ui-sref="access.signin">Logout</a>
+                  </li>
+              </ul>
+              <!-- / dropdown -->
+          </li>
+      </ul>
+      <!-- / navbar right -->
+
+  </div>
+  <!-- / navbar collapse -->
+
+  <!-- navbar collapse -->
+
+  <!-- / navbar collapse -->
+
+  <!-- / navbar -->
+
+  <!-- menu -->
+  <div ng-if="!identity.isAuthenticated()" class="col-md-2 app-aside hidden-xs">
+      <h3 class="font-thin">Top Songs</h3>
+      <div class="list-group bg-white list-group-lg no-bg auto">
+          <a ui-sref="music.detail" class="list-group-item clearfix">
+              <span class="pull-right h2 text-muted m-l">1</span>
+            <span class="pull-left thumb-sm avatar m-r">
+              <img src="img/a4.jpg" alt="..." class="r">
+            </span>
+            <span class="clear">
+              <span>Little Town</span>
+              <small class="text-muted clear text-ellipsis">by Chris Fox</small>
+            </span>
+          </a>
+          <a ui-sref="music.detail" class="list-group-item clearfix">
+              <span class="pull-right h2 text-muted m-l">2</span>
+            <span class="pull-left thumb-sm avatar m-r">
+              <img src="img/a5.jpg" alt="..." class="r">
+            </span>
+            <span class="clear">
+              <span>Lementum ligula vitae</span>
+              <small class="text-muted clear text-ellipsis">by Amanda Conlan</small>
+            </span>
+          </a>
+          <a ui-sref="music.detail" class="list-group-item clearfix">
+              <span class="pull-right h2 text-muted m-l">3</span>
+            <span class="pull-left thumb-sm avatar m-r">
+              <img src="img/a6.jpg" alt="..." class="r">
+            </span>
+            <span class="clear">
+              <span>Aliquam sollicitudin venenatis</span>
+              <small class="text-muted clear text-ellipsis">by Dan Doorack</small>
+            </span>
+          </a>
+          <a ui-sref="music.detail" class="list-group-item clearfix">
+              <span class="pull-right h2 text-muted m-l">4</span>
+            <span class="pull-left thumb-sm avatar m-r">
+              <img src="img/a7.jpg" alt="..." class="r">
+            </span>
+            <span class="clear">
+              <span>Aliquam sollicitudin venenatis ipsum</span>
+              <small class="text-muted clear text-ellipsis">by Lauren Taylor</small>
+            </span>
+          </a>
+          <a ui-sref="music.detail" class="list-group-item clearfix">
+              <span class="pull-right h2 text-muted m-l">5</span>
+            <span class="pull-left thumb-sm avatar m-r">
+              <img src="img/a8.jpg" alt="..." class="r">
+            </span>
+            <span class="clear">
+              <span>Vestibulum ullamcorper</span>
+              <small class="text-muted clear text-ellipsis">by Dan Doorack</small>
+            </span>
+          </a>
+      </div>
+  </div>
+  <div ng-if="identity.isAuthenticated()" data-ng-include=" 'tpl/blocks/aside.music.html' " class="app-aside hidden-xs {{app.settings.asideColor}}">
+  </div>
+  <!-- / menu -->
+
+  <!-- content -->
+  <div class="app-content">
+    <div ui-butterbar></div>
+    <a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
+    <div class="app-content-body fade-in-up" ui-view>
+
+    </div>
+  </div>
+  <!-- /content -->
+
+  <!-- footer -->
+  <div class="app-footer app-footer-fixed" data-ng-include=" 'tpl/music.player.html' ">
+  </div>
+  <!-- / footer -->
+
+
+  </div>

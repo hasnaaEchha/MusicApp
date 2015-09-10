@@ -1,0 +1,58 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="ProfileCtrl">
+    <div class="col">
+        <div style="background:url(img/c4.jpg) center center; background-size:cover">
+            <div class="wrapper-lg bg-white-opacity">
+                <div class="row m-t">
+                    <div class="col-sm-7">
+                        <a href class="thumb-lg pull-left m-r">
+                            <img ng-src="{{user.imgUrl}}" class="img-circle">
+                        </a>
+                        <div class="clear m-b">
+                            <div class="m-b m-t-sm">
+                                <span class="h3 text-black">{{user.name}}</span>
+                                <small class="m-l">London, UK</small>
+                            </div>
+                            <p class="m-b">
+                                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
+                                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
+                                <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper-md" >
+        <div class="m-b">
+            Select an image file
+            <input  type="file" id="fileInput" />
+        </div>
+        <div class="hbox hbox-auto-xs">
+            <div class="col">
+                <div class="wrapper-sm b-a bg-white m-r-xs m-b-xs">
+                    <div class="bg-light" style="height:320px">
+                        <img-crop
+                                image="myImage"
+                                result-image="myCroppedImage"
+                                result-image-size="160"
+                                area-type="{{cropType}}"
+                                ></img-crop>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-5">
+                <button type="submit" ng-click="saveImg()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
